@@ -53,8 +53,19 @@ tr {
     color: #030303 !important;
 }
 
+#datepicker { 
+    font-size: 12px;   
+  }
+  
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
 .sortable-element {
     list-style-type: none;
+    width: auto;
   }
 
 .links > *:nth-child(3) a {
