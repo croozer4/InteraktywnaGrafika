@@ -2,8 +2,30 @@ body{
     margin: 0;
     padding: 0;
     /* background image */
-    background-image: url("img/background.jpg");
+    background-image: url("img/background4.jpg");
     background-size: cover;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0);
+  transform: scaleY(0.8);
+  height: 200px;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  transform: scaleY(0.8);
 }
 
 #gallery_container{
@@ -12,13 +34,6 @@ body{
     max-height: 80vh;
     background: rgba(255, 255, 255, 0.3);
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    /* align-items: center; */
-    align-content: center;
-    gap: 20px !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -26,19 +41,17 @@ body{
     bottom: 0;
     margin: auto;
     border-radius: 20px;
-    backdrop-filter: blur(10px);
-    padding-left: 20px;
-    padding-right: 20px;
-    gap: 20px !important;
+    backdrop-filter: blur(5px);
     border-bottom: 1px solid white;
-    perspective: 1000px;
+    overflow-x: hidden;
 }
 
 .gallery_item{
-    width: 180px;
-    height: 180px;
+    width: calc(100% / 5 - 20px);
+    aspect-ratio : 1 / 1;
     background-color: tomato;
     transition: 0.2s;
+    background-size: cover;
 }
 
 .gallery_item:hover{
@@ -46,4 +59,90 @@ body{
     transform:  scale(1.1);
     transition: 0.3s;
     box-shadow: 0px 0px 12px #00000075;
+}
+
+.gallery_item--full{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 90vh;
+    transition: 2s;
+    z-index: 100;
+    aspect-ratio : 1 / 1;
+    background-size: cover;
+}
+
+#gallery_scroll{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    height: 62vh;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    flex-wrap: wrap;
+    align-content: start;
+    justify-content: center;
+    align-self: center;
+    overflow: visible;
+    overflow-y: scroll;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+}
+
+#gallery_text{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2cm;
+    padding: 0;
+    margin: 0;
+    color: #303030;
+}
+
+#kolumny{
+  height: 1.2cm;
+  position: absolute;
+  top: 20px;
+  right: 32px;
+  font-size: 1.2cm;
+  width: 80px;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  text-align: end;
+  color: #303030;
+}
+
+.minimal{
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid black;
+  text-align: center;
+  height: 40px;
+  aspect-ratio : 1 / 1;
+  color: #303030;
+  font-size: 1.2cm;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  line-height: 40px;
+  position: absolute;
+  top: 25px;
+}
+
+.minimal:hover{
+  cursor: pointer;
+}
+
+#dodaj{
+  right: 200px;
+}
+
+#usun{
+  right: 150px;
 }

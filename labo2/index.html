@@ -11,21 +11,125 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
     </head>
     <body>
+
+        <script>
+            // add event listener to class gallery_item when clicked
+            document.addEventListener('DOMContentLoaded', function() {
+                var galleryItems = document.querySelectorAll('.gallery_item');
+                for (var i = 0; i < galleryItems.length; i++) {
+                    galleryItems[i].addEventListener('click', function() {
+                        var clone = this.cloneNode(true);
+                        clone.style.position = 'fixed';
+                        // give clone the same position as the original
+
+                        var original = this.getBoundingClientRect();
+                        var percentoriginalWidth = this.getBoundingClientRect().width * 0.1;
+                        var originalWidth = this.getBoundingClientRect().width - percentoriginalWidth;
+
+                        clone.style.top = this.getBoundingClientRect().top + 'px';
+                        clone.style.left = this.getBoundingClientRect().left + 'px';
+                        clone.style.width = this.getBoundingClientRect().width + 'px';
+                        // change background
+                        // get the original background image url name of file and change its folder to img
+                        var originalBackground = this.style.backgroundImage;
+                        var originalBackgroundName = originalBackground.replace('url("img/thumbnails/', '');
+                        var originalBackgroundName = originalBackgroundName.replace('")', '');
+                        // clone.style.backgroundImage = 'url(img/' + originalBackgroundName + ')';
+                        //
+                        document.body.appendChild(clone);
+                        // wait for the next frame
+                        requestAnimationFrame(function() {
+                            clone.style.position = 'fixed';
+                            clone.style.top = '50%';
+                            clone.style.left = '50%';
+                            clone.style.transform = 'translate(-50%, -50%)';
+                            clone.style.width = '90vh';
+                        });
+
+                        // wait for the animation to finish
+                        clone.addEventListener('transitionend', function() {
+                            clone.style.backgroundImage = 'url(img/' + originalBackgroundName + ')';
+                        });
+
+                        // when the clone is clicked, remove it
+                        clone.addEventListener('click', function() {
+                            clone.style.position = 'absolute';
+                            clone.style.width = originalWidth + 'px';
+                            clone.style.top = (original.top + (original.width/2)) + 'px';
+                            clone.style.left = (original.left + (original.width/2))+ 'px';
+                            // remove clone after transition
+                            clone.addEventListener('transitionend', function() {
+                                clone.parentNode.removeChild(clone);
+                            });
+                        });
+                    });
+                }
+            });
+        </script>
+
+        <script async defer>
+
+            function changeWidth() {
+                console.log('changeWidth');
+                var kolumnyValue = kolumny.value;
+                var galleryItems = document.querySelectorAll('.gallery_item');
+                for (var i = 0; i < galleryItems.length; i++) {
+                    galleryItems[i].style.width = 'calc(100% / ' + kolumnyValue + ' - 20px)';
+                    console.log("ustawiam szerokosc");
+                }
+            }
+
+            function zwieksz(){
+                document.getElementById("kolumny").value++;
+                changeWidth();
+            }
+
+            function zminiejsz(){
+                document.getElementById("kolumny").value--;
+                changeWidth();
+            }
+        </script>
+
         <div id="gallery_container">
 
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
-            <div class="gallery_item"></div>
+            <p id="gallery_text">.galeria</p>
 
+            <input id="kolumny" name="kolumny" onchange="changeWidth()" value="5"/>
+            <button id="dodaj" class="minimal" onclick="zwieksz()">+</button>
+            <button id="usun" class="minimal" onclick="zminiejsz()">-</button>
+
+            <div id="gallery_scroll">
+                <div class="gallery_item" style="background-image: url('img/thumbnails/1-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/2-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/3-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/4-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/5-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/6-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/7-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/8-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/9-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/10-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/11-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/12-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/1-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/2-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/3-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/4-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/5-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/6-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/7-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/8-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/9-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/10-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/11-min.jpg');"></div>
+                <div class="gallery_item" style="background-image: url('img/thumbnails/12-min.jpg');"></div>
+            </div>
         </div>
     </body>
 </html>
