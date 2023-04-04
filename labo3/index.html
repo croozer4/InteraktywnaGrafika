@@ -43,16 +43,22 @@
                         // hide original
                         galleryItems[i].style.opacity = 0;
 
+                        // get width and height of window
+                        var width = window.innerWidth;
+                        var height = window.innerHeight;
 
                         // generate random number between 0 and 1000
-                        var random = Math.floor(Math.random() * 1000);
-                        var random2 = Math.floor(Math.random() * 1000);
+                        var random = Math.floor(Math.random() * height);
+                        var random2 = Math.floor(Math.random() * width);
+
+                        var rotate = Math.floor(Math.random() * 360);
 
 
                         //move clone to random position
                         // clone.style.transform = "rotate(" + random + "deg)";
                         clone.style.top = random + "px";
                         clone.style.left = random2 + "px"; 
+                        clone.style.transform = "rotate(" + rotate + "deg)";
 
 
                         document.body.appendChild(clone);
@@ -66,8 +72,7 @@
                                 galleryItems[i].getBoundingClientRect().top + "px";
                                 cloneArray[i].style.left =
                                 galleryItems[i].getBoundingClientRect().left + "px";
-                                cloneArray[i].style.width =
-                                galleryItems[i].getBoundingClientRect().width + "px";
+                                cloneArray[i].style.transform = "rotate(" + 0 + "deg)";
                             }
                         }, 2000);
 
