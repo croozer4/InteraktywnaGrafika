@@ -69,21 +69,29 @@
                                 cloneArray[i].style.width =
                                 galleryItems[i].getBoundingClientRect().width + "px";
                             }
-                        }, 1000);
+                        }, 2000);
 
                         // reveal original
                         setTimeout(function () {
                             for (var i = 0; i < galleryItems.length; i++) {
                                 galleryItems[i].style.opacity = 1;
                             }
-                        }, 2000);
+                        }, 2300);
+
+                        // set opacity to 0
+                        setTimeout(function () {
+                            for (var i = 0; i < cloneArray.length; i++) {
+                                cloneArray[i].style.transition = "opacity 1s";
+                                cloneArray[i].style.opacity = 0;
+                            }
+                        }, 2400);
 
                         // wait till transitioned and remove clones
                         setTimeout(function () {
                             for (var i = 0; i < cloneArray.length; i++) {
                                 cloneArray[i].parentNode.removeChild(cloneArray[i]);
                             }
-                        }, 2000);
+                        }, 3400);
 
                 }
             });
